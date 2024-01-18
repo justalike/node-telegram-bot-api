@@ -2433,6 +2433,24 @@ class TelegramBot extends EventEmitter {
     return this._request('deleteMessage', { form });
   }
 
+
+  /**
+   * Use this method to delete multiple messages simultaneously.
+   * Returns True on success.
+   *
+   * @param  {Number|String} chatId  Unique identifier of the target chat or username of the target channel
+   * @param  {Array} messageIds  Array of message IDs to be deleted
+   * @param  {Object} [options] Additional Telegram query options
+   * @return {Promise} True on success
+   */
+  deleteMessages(chatId, messageIds, options = {}) {
+    const form = {
+      chat_id: chatId,
+      message_ids: messageIds,
+      ...options
+    };
+    return this._request('deleteMessages', { form });
+  }
   /**
    * Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS,
    * or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers.
